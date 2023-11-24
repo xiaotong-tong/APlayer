@@ -4,6 +4,8 @@ export default (options) => {
         container: options.element || document.getElementsByClassName('aplayer')[0],
         mini: options.narrow || options.fixed || false,
         fixed: false,
+        view: false,
+        lrcStep: options.view ? 24 : 16,
         autoplay: false,
         mutex: true,
         lrcType: options.showlrc || options.lrc || 0,

@@ -8,8 +8,10 @@ class List {
         this.index = 0;
         this.audios = this.player.options.audio;
         this.showing = true;
-        this.player.template.list.style.height = `${Math.min(this.player.template.list.scrollHeight, this.player.options.listMaxHeight)}px`;
 
+        if (!this.player.options.view) {
+            this.player.template.list.style.height = `${Math.min(this.player.template.list.scrollHeight, this.player.options.listMaxHeight)}px`;
+        }
         this.bindEvents();
     }
 

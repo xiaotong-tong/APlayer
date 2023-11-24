@@ -31,6 +31,9 @@ class APlayer {
         this.randomOrder = utils.randomOrder(this.options.audio.length);
 
         this.container.classList.add('aplayer');
+        if (this.options.view) {
+            this.container.classList.add('aplayer-view');
+        }
         if (this.options.lrcType && !this.options.fixed) {
             this.container.classList.add('aplayer-withlrc');
         }
