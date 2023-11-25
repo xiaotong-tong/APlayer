@@ -215,6 +215,7 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
 
         .aplayer-body {
             flex: 1;
+            min-width: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -225,11 +226,20 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
             margin-left: 0;
             border-bottom: none;
             flex: 1;
+            width: 100%;
 
             .aplayer-music {
-                font-size: 24px;
                 height: auto;
                 max-height: 64px;
+                text-align: center;
+
+                .aplayer-title {
+                    font-size: 24px;
+                }
+
+                .aplayer-author {
+                    font-size: 16px;
+                }
             }
             .aplayer-lrc {
                 height: auto;
@@ -285,7 +295,99 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
         }
 
         .aplayer-list {
-            flex: 1;
+            flex: 1 0 0;
+        }
+    }
+
+    &.aplayer-mview {
+        .aplayer-body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: static;
+
+            .aplayer-pic {
+                margin-block-start: 8px;
+            }
+
+            .aplayer-info {
+                margin-left: 0;
+                border-bottom: none;
+                flex: 1;
+
+                .aplayer-music {
+                    height: auto;
+                    max-height: 64px;
+                    text-align: center;
+
+                    .aplayer-title {
+                        font-size: 24px;
+                    }
+
+                    .aplayer-author {
+                        font-size: 16px;
+                    }
+                }
+
+                .aplayer-lrc {
+                    height: auto;
+                    max-height: calc(100% - 88px);
+                    margin-block-start: 36px;
+
+                    &::before {
+                        top: -48px;
+                    }
+
+                    p {
+                        line-height: 24px;
+                        height: 24px;
+                    }
+                }
+
+                .aplayer-controller {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+
+                    .aplayer-bar-wrap {
+                        margin-inline-start: 64px;
+                    }
+
+                    .aplayer-time {
+                        position: static;
+                        margin-block-end: 4px;
+                        margin-block-start: -4px;
+                    }
+
+                    .aplayer-icon-back,
+                    .aplayer-icon-play,
+                    .aplayer-icon-forward {
+                        display: inline-block;
+                        position: absolute;
+                    }
+                    .aplayer-icon-back {
+                        left: 8px;
+                    }
+                    .aplayer-icon-play {
+                        left: 24px;
+                    }
+                    .aplayer-icon-forward {
+                        left: 40px;
+                    }
+                }
+            }
+        }
+
+        .aplayer-list {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 2;
+            max-height: 70%;
+            background: #fff;
         }
     }
 

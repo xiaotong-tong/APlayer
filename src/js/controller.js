@@ -16,6 +16,18 @@ class Controller {
         this.initMiniSwitcher();
         this.initSkipButton();
         this.initLrcButton();
+
+        if (this.player.options.mview) {
+            this.player.template.body.addEventListener(
+                'click',
+                () => {
+                    if (this.player.list.showing && !(this.player.options.view && window.innerWidth >= 768)) {
+                        this.player.list.hide();
+                    }
+                },
+                true
+            );
+        }
     }
 
     initPlayButton() {

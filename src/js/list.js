@@ -9,8 +9,12 @@ class List {
         this.audios = this.player.options.audio;
         this.showing = true;
 
-        if (!this.player.options.view) {
+        if (!this.player.options.view && !this.player.options.mview) {
             this.player.template.list.style.height = `${Math.min(this.player.template.list.scrollHeight, this.player.options.listMaxHeight)}px`;
+        }
+
+        if (this.player.options.mview && (!this.player.options.view || (this.player.options.view && window.innerWidth < 768))) {
+            this.hide();
         }
         this.bindEvents();
     }
@@ -36,7 +40,11 @@ class List {
     show() {
         this.showing = true;
         this.player.template.list.scrollTop = this.index * 33;
-        this.player.template.list.style.height = `${Math.min(this.player.template.list.scrollHeight, this.player.options.listMaxHeight)}px`;
+        if (!this.player.options.view && !this.player.options.mview) {
+            this.player.template.list.style.height = `${Math.min(this.player.template.list.scrollHeight, this.player.options.listMaxHeight)}px`;
+        } else {
+            this.player.template.list.style.height = '100%';
+        }
         this.player.events.trigger('listshow');
     }
 

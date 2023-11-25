@@ -5,7 +5,8 @@ export default (options) => {
         mini: options.narrow || options.fixed || false,
         fixed: false,
         view: false,
-        lrcStep: options.view ? 24 : 16,
+        mview: false,
+        lrcStep: options.view || options.mview ? 24 : 16,
         autoplay: false,
         mutex: true,
         lrcType: options.showlrc || options.lrc || 0,
@@ -14,11 +15,12 @@ export default (options) => {
         loop: 'all',
         order: 'list',
         volume: 0.7,
-        listFolded: options.fixed,
+        listFolded: options.mview || options.fixed,
         listMaxHeight: options.listmaxheight || 250,
         audio: options.music || [],
         storageName: 'aplayer-setting',
     };
+
     for (const defaultKey in defaultOption) {
         if (defaultOption.hasOwnProperty(defaultKey) && !options.hasOwnProperty(defaultKey)) {
             options[defaultKey] = defaultOption[defaultKey];

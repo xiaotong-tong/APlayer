@@ -34,6 +34,36 @@ class APlayer {
         if (this.options.view) {
             this.container.classList.add('aplayer-view');
         }
+        if (this.options.mview) {
+            this.container.classList.add('aplayer-mview');
+        }
+
+        if (this.options.view && this.options.mview) {
+            const switchView = () => {
+                if (!this.container) {
+                    return;
+                }
+                const viewWidth = window.innerWidth;
+                if (viewWidth < 768) {
+                    this.container.classList.remove('aplayer-view');
+                    this.container.classList.add('aplayer-mview');
+
+                    if (this.list && this.list.showing === true) {
+                        this.list.hide();
+                    }
+                } else {
+                    this.container.classList.remove('aplayer-mview');
+                    this.container.classList.add('aplayer-view');
+
+                    if (this.list && this.list.showing === false) {
+                        this.list.show();
+                    }
+                }
+            };
+            switchView();
+            window.addEventListener('resize', switchView);
+        }
+
         if (this.options.lrcType && !this.options.fixed) {
             this.container.classList.add('aplayer-withlrc');
         }
